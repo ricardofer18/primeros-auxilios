@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Rol {
+  id       String     @id @default(cuid())
+  name     String
+  Personal Personal[]
+  Paciente Paciente[]
+}
+
+model Perfil {
+  id        String     @id @default(cuid())
+  nombres   String
+  apellidos String
+  email     String
+  Personal  Personal[]
+}
+
+model Personal {
+  id        String  @id @default(cuid())
+  run       String
+  password  String
+  rol_id    String
+  perfil_id String
+  rol       Rol     @relation(fields: [rol_id], references: [id])
+  perfil    Perfil  @relation(fields: [perfil_id], references: [id])
+  Ficha     Ficha[]
+}
+
+model Paciente {
+  id               String   @id @default(cuid())
+  run              String
+  nombres          String
+  apellidos        String
+  fecha_nacimiento DateTime
+  correo           String
+  prevision        String
+  jornada          String
+  plan_estudios    String
+  semestre         Int
+  celular          String
+  nombre_contacto  String
+  numero_contacto  String
+  ucm              Boolean
+  seguro_MOK       Boolean
+  rol_id           String
+  rol              Rol      @relation(fields: [rol_id], references: [id])
+  Ficha            Ficha[]
+}
+
+model Ficha {
+  id                      String   @id @default(cuid())
+  paciente_id             String
+  fecha                   DateTime
+  hora                    DateTime
+  hora_entrada            DateTime
+  hora_salida             DateTime
+  motivo_consulta         String
+  presion_sistolica       Int
+  presion_diastolica      Int
+  frecuencia_cardiaca     Int
+  frecuencia_respiratoria Int
+  temperatura             Float
+  saturacion              Int
+  hgt                     Int
+  eva                     Int
+  procedimiento           String
+  personal_id             String
+  paciente                Paciente @relation(fields: [paciente_id], references: [id])
+  personal                Personal @relation(fields: [personal_id], references: [id])
+}

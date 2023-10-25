@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "description": "Proyecto para la sala de primeros auxilios",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev ./src/index.ts",
+    "start": "node ./build/index.js",
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iver-Ricardo-Felipe",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.20",
+    "prisma": "^5.5.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.5.1"
+  }
+}
