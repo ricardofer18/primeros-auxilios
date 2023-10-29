@@ -10,60 +10,83 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Rol {
-  id       String     @id @default(cuid())
-  name     String
-  Personal Personal[]
-  Paciente Paciente[]
+model Persona {
+  id               String    @id @unique @default(uuid())
+  nombres          String
+  primer_apellido  String
+  segundo_apellido String
+  correo           String    @unique
+  run              String
+  fono             Fono[]
+  personal         Personal?
+  paciente         Paciente?
 }
 
-model Perfil {
-  id        String     @id @default(cuid())
-  nombres   String
-  apellidos String
-  email     String
-  Personal  Personal[]
+model Fono {
+  id         String  @id @unique @default(uuid())
+  numero     String
+  persona_id String
+  persona    Persona @relation(fields: [persona_id], references: [id])
+}
+
+model Rol {
+  id       String     @id @unique @default(uuid())
+  cargo    String
+  personal Personal[]
 }
 
 model Personal {
-  id        String  @id @default(cuid())
-  run       String
-  password  String
-  rol_id    String
-  perfil_id String
-  rol       Rol     @relation(fields: [rol_id], references: [id])
-  perfil    Perfil  @relation(fields: [perfil_id], references: [id])
-  Ficha     Ficha[]
+  id            String  @id @unique @default(uuid())
+  persona_id    String  @unique
+  cuenta_activa Boolean
+  persona       Persona @relation(fields: [persona_id], references: [id])
+  rol           Rol?    @relation(fields: [rol_id], references: [id])
+  auth          Auth?
+  ficha         Ficha[]
+  rol_id        String?  @unique
+}
+
+model Auth {
+  id          String   @id @unique @default(uuid())
+  password    String
+  personal_id String   @unique
+  personal    Personal @relation(fields: [personal_id], references: [id])
+}
+
+model Prevision {
+  id       String     @id @unique @default(uuid())
+  nombre   String
+  tipo     String
+  paciente Paciente[]
 }
 
 model Paciente {
-  id               String   @id @default(cuid())
-  run              String
-  nombres          String
-  apellidos        String
-  fecha_nacimiento DateTime
-  correo           String
-  prevision        String
+  id               String      @id @unique @default(uuid())
+  fecha_nacimiento String
   jornada          String
   plan_estudios    String
-  semestre         Int
-  celular          String
-  nombre_contacto  String
-  numero_contacto  String
+  semestre         String
   ucm              Boolean
   seguro_MOK       Boolean
-  rol_id           String
-  rol              Rol      @relation(fields: [rol_id], references: [id])
-  Ficha            Ficha[]
+  persona_id       String      @unique
+  persona          Persona     @relation(fields: [persona_id], references: [id])
+  prevision_id     String
+  prevision        Prevision   @relation(fields: [prevision_id], references: [id])
+  documento        Documento[]
+  ficha            Ficha[]
+}
+
+model Documento {
+  id          String   @id @unique @default(uuid())
+  tipo        String
+  url         String
+  paciente_id String
+  paciente    Paciente @relation(fields: [paciente_id], references: [id])
 }
 
 model Ficha {
-  id                      String   @id @default(cuid())
-  paciente_id             String
-  fecha                   DateTime
-  hora                    DateTime
-  hora_entrada            DateTime
-  hora_salida             DateTime
+  id                      String   @id @unique @default(uuid())
+  fecha                   String
   motivo_consulta         String
   presion_sistolica       Int
   presion_diastolica      Int
@@ -74,7 +97,8 @@ model Ficha {
   hgt                     Int
   eva                     Int
   procedimiento           String
-  personal_id             String
+  paciente_id             String
   paciente                Paciente @relation(fields: [paciente_id], references: [id])
+  personal_id             String
   personal                Personal @relation(fields: [personal_id], references: [id])
 }
