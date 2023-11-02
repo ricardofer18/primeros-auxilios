@@ -1,6 +1,7 @@
 import {
   PacienteType,
   PacienteWithFichasType,
+  PacienteWithPersonaType,
   prisma,
 } from "../types/paciente.types"
 
@@ -15,6 +16,21 @@ export class PacienteService {
       return pacientes
     } catch (error) {
       console.error("Error al buscar todos los pacientes", error)
+      throw error
+    }
+  }
+  
+  async findOnePacienteWithPersona(
+    id: string
+  ): Promise<PacienteWithPersonaType | null> {
+    try {
+      const pacientePersona = await prisma.paciente.findFirst({
+        where: { id },
+        include: { persona: true },
+      })
+      return pacientePersona
+    } catch (error) {
+      console.error("Error al buscar los datos personales del paciuente", error)
       throw error
     }
   }

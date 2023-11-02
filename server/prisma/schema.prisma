@@ -43,7 +43,7 @@ model Personal {
   rol           Rol?    @relation(fields: [rol_id], references: [id])
   auth          Auth?
   ficha         Ficha[]
-  rol_id        String?  @unique
+  rol_id        String? @unique
 }
 
 model Auth {

@@ -1,11 +1,27 @@
-import { Paciente, PrismaClient, Ficha } from '@prisma/client'
+import { Paciente, PrismaClient, Ficha } from "@prisma/client"
+import { PersonaType } from "./persona.types"
 
 const prisma = new PrismaClient()
 
 type PacienteType = Paciente
 
-type PacienteWithFichasType = Paciente & {
+type PacienteWithFichasType = PacienteType & {
   ficha: Ficha[]
 }
 
-export {prisma, PacienteType, PacienteWithFichasType}
+type PacienteWithFichasAndPersonaType = PacienteType & {
+  ficha: Ficha[]
+  persona: PersonaType
+}
+
+type PacienteWithPersonaType = PacienteType & {
+  persona: PersonaType
+}
+
+export {
+  prisma,
+  PacienteType,
+  PacienteWithFichasType,
+  PacienteWithFichasAndPersonaType,
+  PacienteWithPersonaType
+}

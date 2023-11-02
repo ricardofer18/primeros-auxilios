@@ -1,4 +1,9 @@
-import { PersonalType, prisma } from "../types/personal.types"
+import {
+  PersonalType,
+  PersonalTypeWithAuth,
+  PersonalTypeWithPersona,
+  prisma,
+} from "../types/personal.types"
 
 export class PersonalService {
   constructor() {}
@@ -19,6 +24,49 @@ export class PersonalService {
       return personal
     } catch (error) {
       console.error("Error al buscar personal: ", error)
+      throw error
+    }
+  }
+
+  async findOneWithAuthById(id: string): Promise<PersonalTypeWithAuth | null> {
+    try {
+      const personalAuth = await prisma.personal.findFirst({
+        where: { id },
+        include: { auth: true, persona: true },
+      })
+      return personalAuth
+    } catch (error) {
+      console.error("Error en la búsqueda de personal:", error)
+      throw error
+    }
+  }
+
+  async findOneWithAuthByEmail(
+    email: string
+  ): Promise<PersonalTypeWithAuth | null> {
+    try {
+      const personalAuth = await prisma.personal.findFirst({
+        where: { persona: { correo: email } },
+        include: { auth: true, persona: true },
+      })
+      return personalAuth
+    } catch (error) {
+      console.error("Error en la búsqueda de personal:", error)
+      throw error
+    }
+  }
+
+  async findPersonalWithPersonaById(
+    id: string
+  ): Promise<PersonalTypeWithPersona | null> {
+    try {
+      const personalPersona = await prisma.personal.findFirst({
+        where: { id },
+        include: { persona: true },
+      })
+      return personalPersona
+    } catch (error) {
+      console.error("Error al encontrar datos personales del personal", error)
       throw error
     }
   }
