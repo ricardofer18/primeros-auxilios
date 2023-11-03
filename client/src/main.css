@@ -1,3 +1,74 @@
 html{
     height: 100%;
 }
+body{
+    height: 100%;
+}
+#root{
+    height: 100%;
+}
+
+.bg-shadow{
+    box-shadow: 0px 0px 30px #000;
+}
+.bg-red{
+    background-color: rgba(226,31,24,255);
+}
+.h-full{
+    height: 100%;
+}
+.vertical-align{
+    display: flex;
+    align-items: center;
+}
+.invert{
+    filter: invert(0.14);
+}
+.invert-1{
+    filter: invert(1);
+}
+
+.selected{
+    background-color: #fff;
+    color: #000 !important;
+}
+.selected img{
+    filter: invert(0);
+}
+nav button{
+    transition: 0.2s;
+}
+nav button:hover{
+    color: #e1e1e1 !important;
+}
+
+.large-text{
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Muestra solo 2 líneas */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Permite el recorte de texto */
+    text-overflow: ellipsis; /* Aplica el efecto de recorte */
+    overflow: hidden;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

@@ -1,27 +1,20 @@
 import React from 'react';
 import logo from '../assets/inacap.svg'
+import Container from './container';
+import LoginForm from './Forms/LoginForm';
 
-const Container = ({ children }) => {
-  const bgRed = {
-    backgroundColor: 'rgba(226,31,24,255)'
-  };
+const Login = () => {
   return (
-    <>
-        <div className="col-4 text-center p-5" style={bgRed}>
-            <form className='p-5'>
-                <h1 className="fs-1 mb-5 text-dark">Iniciar Sesion</h1>
-                <input type='email' className='container rounded-3 border-0 bg-white p-2 mb-4' placeholder='Correo' />
-                <input type='email' className='container rounded-3 border-0 bg-white p-2 mb-5' placeholder='Contraseña' />
-                <br/>
-                <button type="submit" className='btn btn-danger container'>Ingresar</button>
-            </form>
-        </div>
-        <div className='col-8 text-center pt-5'>
-            <img src={logo} className='col-6 mt-5 pt-5' />
-            <h1 className='text-secondary'>Sala Primeros Auxilios</h1>
-        </div>
-    </>
+    <Container>
+      <div className="col-4 text-center p-5 vertical-align bg-red bg-shadow">
+        <LoginForm></LoginForm>
+      </div>
+      <div className='col-8 text-center row mx-auto vertical-align'>
+        <img src={logo} className='col-8 mx-auto pt-5 mt-5' />
+        <h1 className='col-12 text-secondary'>Sala Primeros Auxilios</h1>
+      </div>
+    </Container>
   );
 };
 
-export default Container;
+export default Login;
