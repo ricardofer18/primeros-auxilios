@@ -1,4 +1,4 @@
-import logo from '../assets/inacap.svg'
+import logo from '../assets/inacap.png'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
@@ -9,6 +9,7 @@ const Navbar = () => {
     return (
         <nav className='row mx-auto bg-red pt-3'>
             <div className='fs-5'>
+                <img src={logo} className='col-1 float-start ms-5' />
                 <button 
                     className={
                     location.pathname === '/home/pacientes' ?
@@ -17,8 +18,7 @@ const Navbar = () => {
                     onClick={() => navigate("pacientes")}>
                     <img src="https://img.icons8.com/?size=26&id=86980&format=png" className='pe-2 invert-1' />
                     Pacientes
-                    </button>
-                    
+                </button>
                 <button 
                     className={
                     location.pathname === '/home/fichas' ?
@@ -27,7 +27,7 @@ const Navbar = () => {
                     onClick={() => navigate("fichas")} >
                     <img src="https://img.icons8.com/?size=26&id=98063&format=png" className='pe-2 invert-1' />
                     Fichas
-                    </button>
+                </button>
             </div>
         </nav>
     );

@@ -39,7 +39,7 @@ nav button{
     transition: 0.2s;
 }
 nav button:hover{
-    color: #e1e1e1 !important;
+    color: #909090 !important;
 }
 
 .large-text{
