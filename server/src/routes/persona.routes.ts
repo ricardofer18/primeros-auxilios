@@ -7,5 +7,7 @@ const personaRouter = Router()
 personaRouter
   .post('/', personaController.createPersona)
   .get('/', personaController.getAllPersonas)
+  .get('/:id', personaController.getPersonaById)
+  .put('/:id', personaController.updatePersona)
 
 export default personaRouter

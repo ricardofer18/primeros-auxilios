@@ -27,6 +27,8 @@ export class AuthController {
 
       console.log(foundPersonal.auth?.password)
 
+      if (foundPersonal.cuenta_activa == false) return res.sendStatus(401)
+
       if (match) {
         if (ACCESS_TOKEN_SECRET) {
           const payload = {

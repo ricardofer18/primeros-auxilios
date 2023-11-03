@@ -20,7 +20,7 @@ export class PacienteService {
     }
   }
   
-  async findOnePacienteWithPersona(
+  async findOnePacienteWithPersonaById(
     id: string
   ): Promise<PacienteWithPersonaType | null> {
     try {

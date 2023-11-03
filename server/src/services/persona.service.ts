@@ -15,12 +15,14 @@ export class PersonaService {
 
   async findOneById(id: string): Promise<PersonaType | null> {
     try {
-      const persona = await prisma.persona.findFirst({where: {
-        id
-      }})
+      const persona = await prisma.persona.findFirst({
+        where: {
+          id,
+        },
+      })
       return persona
     } catch (error) {
-      console.error('Error al encontrar persona por id', error)
+      console.error("Error al encontrar persona por id", error)
       throw error
     }
   }
@@ -31,6 +33,19 @@ export class PersonaService {
       return newPersona
     } catch (error) {
       console.error("Error al crear una persona", error)
+      throw error
+    }
+  }
+
+  async update(id: string, data: PersonaType): Promise<PersonaType | null> {
+    try {
+      const updatedPersona = prisma.persona.update({
+        where: { id },
+        data,
+      })
+      return updatedPersona
+    } catch (error) {
+      console.error("Error al actualizar una persona", error)
       throw error
     }
   }

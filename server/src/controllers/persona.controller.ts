@@ -24,4 +24,25 @@ export class PersonaController {
       res.status(500).json({ success: false, message: error })
     }
   }
+
+  getPersonaById = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id
+      const persona = await service.findOneById(id)
+      res.json({ success: true, data: persona })
+    } catch (error) {
+      res.status(500).json({ success: false, message: error })
+    }
+  }
+
+  updatePersona = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id
+      const personaData = req.body
+      const updatedPersona = await service.update(id, personaData)
+      res.json({ success: true, data: updatedPersona })
+    } catch (error) {
+      res.status(500).json({ success: false, message: error })
+    }
+  }
 }
