@@ -1,3 +1,5 @@
+import Alert from "../Alert";
+
 const LoginForm = () => {
   return (
     <form className='p-5'>
@@ -7,6 +9,7 @@ const LoginForm = () => {
         <input type='email' className='container rounded-3 border-0 bg-white p-2 mb-5' placeholder='Contraseña' />
         <br />
         <button type="submit" className='btn btn-dark container'>Ingresar</button>
+        <Alert errorMessage='Error' type='danger'/>
     </form>
   );
 };

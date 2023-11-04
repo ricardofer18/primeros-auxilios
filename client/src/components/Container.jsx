@@ -1,4 +1,4 @@
-import React from 'react';
+import Alert from './Alert'
 
 const Container = ({ children }) => {
   return (
