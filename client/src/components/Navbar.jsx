@@ -1,3 +1,4 @@
+import { useState } from "react"
 import logo from "../assets/inacap.png"
 import { useNavigate, useLocation } from "react-router-dom"
 import ProfileOptions from "./ProfileOptions"
@@ -5,14 +6,26 @@ import ProfileOptions from "./ProfileOptions"
 const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const [showProfileOptions, setShowProfileOptions] = useState(false)
+
+  const toggleProfileOptions = () => {
+    setShowProfileOptions(!showProfileOptions)
+  }
 
   return (
     <nav className='row mx-auto bg-red pt-3'>
-      <div className='fs-5' >
+      <div className='fs-5'>
         <img src={logo} className='col-1 float-start ms-5' />
-        <button className='float-end bg-red text-white border-0 rounded-top ps-4 ms-2' onClick={() => (<ProfileOptions></ProfileOptions>)}>
-          <img src="https://img.icons8.com/?size=34&id=85147&format=png" className="pe-2 invert-1" />
+        <button
+          className='float-end bg-red text-white border-0 rounded-top ps-4 ms-2'
+          onClick={toggleProfileOptions}
+        >
+          <img
+            src='https://img.icons8.com/?size=34&id=85147&format=png'
+            className={`pe-2 invert-1 ${showProfileOptions ? "active" : ""}`}
+          />
         </button>
+        {showProfileOptions && <ProfileOptions />}
         <button
           className={
             location.pathname === "/home/pacientes"
