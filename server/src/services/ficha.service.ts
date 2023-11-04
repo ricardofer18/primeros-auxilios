@@ -3,9 +3,14 @@ import { FichaType, prisma } from "../types/ficha.types"
 export class FichaService {
   constructor() {}
 
-  async findAll(): Promise<FichaType[]> {
+  async findAll(page: number, size: number): Promise<FichaType[]> {
     try {
-      const fichas = prisma.ficha.findMany()
+      const offset = (page - 1) * size
+
+      const fichas = prisma.ficha.findMany({
+        skip: offset,
+        take: size,
+      })
       return fichas
     } catch (error) {
       console.error("Error al buscar todas las fichas", error)
