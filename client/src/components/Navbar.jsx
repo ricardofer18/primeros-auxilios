@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className='fs-5'>
         <img src={logo} className='col-1 float-start ms-5' />
         <button
-          className='float-end bg-red text-white border-0 rounded-top ps-4 ms-2'
+          className='float-end bg-red text-white border-0 rounded-top ps-4 ms-2 col-1 text-end'
           onClick={toggleProfileOptions}
         >
           <img
