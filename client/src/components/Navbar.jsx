@@ -14,32 +14,9 @@ const Navbar = () => {
 
   return (
     <nav className='row mx-auto bg-red pt-3'>
-      <div className='fs-5'>
-        <img src={logo} className='col-1 float-start ms-5' />
-        <button
-          className='float-end bg-red text-white border-0 rounded-top ps-4 ms-2 col-1 text-end'
-          onClick={toggleProfileOptions}
-        >
-          <img
-            src='https://img.icons8.com/?size=34&id=85147&format=png'
-            className={`pe-2 invert-1 ${showProfileOptions ? "active" : ""}`}
-          />
-        </button>
-        {showProfileOptions && <ProfileOptions />}
-        <button
-          className={
-            location.pathname === "/home/pacientes"
-              ? "float-end col-2 bg-red text-white border-0 rounded-top p-2 ms-2 selected"
-              : "float-end col-2 bg-red text-white border-0 rounded-top p-2 ms-2"
-          }
-          onClick={() => navigate("pacientes")}
-        >
-          <img
-            src='https://img.icons8.com/?size=26&id=86980&format=png'
-            className='pe-2 invert-1'
-          />
-          Pacientes
-        </button>
+      <div className='fs-5 row mx-auto'>
+        <img src={logo} className='logo col-1 float-start ms-5' />
+        <div className='col-5'></div>
         <button
           className={
             location.pathname === "/home/fichas"
@@ -54,6 +31,32 @@ const Navbar = () => {
           />
           Fichas
         </button>
+
+        <button
+          className={
+            location.pathname === "/home/pacientes"
+              ? "float-end col-2 bg-red text-white border-0 rounded-top p-2 ms-2 selected"
+              : "float-end col-2 bg-red text-white border-0 rounded-top p-2 ms-2"
+          }
+          onClick={() => navigate("pacientes")}
+        >
+          <img
+            src='https://img.icons8.com/?size=26&id=86980&format=png'
+            className='pe-2 invert-1'
+          />
+          Pacientes
+        </button>
+
+        <button
+          className='float-end bg-red text-white border-0 rounded-top ms-2 col-1 text-end'
+          onClick={toggleProfileOptions}
+        >
+          <img
+            src='https://img.icons8.com/?size=34&id=85147&format=png'
+            className={`pe-2 invert-1 ${showProfileOptions ? "active" : ""}`}
+          />
+        </button>
+        {showProfileOptions && <ProfileOptions />}
       </div>
     </nav>
   )
