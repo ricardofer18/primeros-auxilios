@@ -1,17 +1,19 @@
 import logo from "../assets/inacap.png"
 import { useNavigate, useLocation } from "react-router-dom"
-import useUserStore from "../store/userStore"
+import ProfileOptions from "./ProfileOptions"
 
 const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const logout = useUserStore((state) => state.logoutUser)
-
   return (
     <nav className='row mx-auto bg-red pt-3'>
-      <div className='fs-5'>
+      <div className='fs-5' >
         <img src={logo} className='col-1 float-start ms-5' />
+        <button class='float-end bg-red text-white border-0 rounded-top ps-4 ms-2'>
+          <img src="https://img.icons8.com/?size=34&id=85147&format=png" className="pe-2 invert-1" />
+        </button>
+        <ProfileOptions></ProfileOptions>
         <button
           className={
             location.pathname === "/home/pacientes"
@@ -40,7 +42,6 @@ const Navbar = () => {
           />
           Fichas
         </button>
-        <button onClick={() => logout()}>Cerrar Sesión</button>
       </div>
     </nav>
   )

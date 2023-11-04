@@ -35,6 +35,7 @@ body{
 .selected img{
     filter: invert(0);
 }
+
 nav button{
     transition: 0.2s;
 }
@@ -81,7 +82,24 @@ nav button:hover{
     }
 }
 
-
+.profile-options{
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    opacity: 1;
+    animation: joinOpts 1s ease;
+    filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.3))
+}
+@keyframes joinOpts {
+    0%{
+        margin-top: -200px !important;
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 
 /* width */
 ::-webkit-scrollbar {
