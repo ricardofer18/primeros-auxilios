@@ -18,16 +18,16 @@ export class AuthController {
     }
     try {
       const foundPersonal = await personalService.findOneWithAuthByEmail(email)
-      if (!foundPersonal) return res.sendStatus(401)
+      if (!foundPersonal)
+        return res.status(401).json({ success: false, message: "Unauthorized" })
 
       const match = await bcrypt.compare(
         password,
         foundPersonal.auth?.password as string
       )
 
-      console.log(foundPersonal.auth?.password)
-
-      if (foundPersonal.cuenta_activa == false) return res.sendStatus(401)
+      if (foundPersonal.cuenta_activa == false)
+        return res.status(401).json({ success: false, message: "Unauthorized" })
 
       if (match) {
         if (ACCESS_TOKEN_SECRET) {
@@ -44,6 +44,7 @@ export class AuthController {
             message: `Personal ${foundPersonal.persona.nombres} ${foundPersonal.persona.primer_apellido} ${foundPersonal.persona.segundo_apellido}, ha iniciado sesión correctamente`,
             userData: {
               accessToken: accessToken,
+              id: foundPersonal.id,
               datosPersonales: foundPersonal.persona,
             },
           })
