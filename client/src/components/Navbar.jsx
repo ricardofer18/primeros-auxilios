@@ -10,10 +10,9 @@ const Navbar = () => {
     <nav className='row mx-auto bg-red pt-3'>
       <div className='fs-5' >
         <img src={logo} className='col-1 float-start ms-5' />
-        <button class='float-end bg-red text-white border-0 rounded-top ps-4 ms-2'>
+        <button className='float-end bg-red text-white border-0 rounded-top ps-4 ms-2' onClick={() => (<ProfileOptions></ProfileOptions>)}>
           <img src="https://img.icons8.com/?size=34&id=85147&format=png" className="pe-2 invert-1" />
         </button>
-        <ProfileOptions></ProfileOptions>
         <button
           className={
             location.pathname === "/home/pacientes"
