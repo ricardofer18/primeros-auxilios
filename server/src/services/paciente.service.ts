@@ -8,10 +8,14 @@ import {
 export class PacienteService {
   constructor() {}
 
-  async findAll(): Promise<PacienteType[]> {
+  async findAll(page: number, size: number): Promise<PacienteType[]> {
     try {
+      const offset = (page - 1) * size
+
       const pacientes = await prisma.paciente.findMany({
         include: { prevision: true, persona: true },
+        skip: offset,
+        take: size,
       })
       return pacientes
     } catch (error) {
@@ -19,7 +23,7 @@ export class PacienteService {
       throw error
     }
   }
-  
+
   async findOnePacienteWithPersonaById(
     id: string
   ): Promise<PacienteWithPersonaType | null> {

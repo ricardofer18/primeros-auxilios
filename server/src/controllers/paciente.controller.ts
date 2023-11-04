@@ -27,9 +27,11 @@ export class PacienteController {
     }
   }
 
-  getAllPacientes = async (_req: Request, res: Response) => {
+  getAllPacientes = async (req: Request, res: Response) => {
     try {
-      const pacientes = await pacienteService.findAll()
+      const { page = 1, size = 3 } = req.query
+
+      const pacientes = await pacienteService.findAll(+page, +size)
       res.json({ success: true, data: pacientes })
     } catch (error) {
       res.status(500).json({ success: false, message: error })

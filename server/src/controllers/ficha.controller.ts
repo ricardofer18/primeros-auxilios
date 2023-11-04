@@ -4,9 +4,9 @@ import { FichaService } from "../services/ficha.service"
 const service = new FichaService()
 
 export class FichaController {
-  constructor () {}
+  constructor() {}
 
-  async createFicha (req: Request, res: Response) {
+  async createFicha(req: Request, res: Response) {
     try {
       const fichaData = req.body
       const newFicha = await service.create(fichaData)
@@ -16,16 +16,19 @@ export class FichaController {
     }
   }
 
-  async getAllFichas (_req: Request, res: Response) {
+  async getAllFichas(req: Request, res: Response) {
     try {
-      const fichas = await service.findAll()
+      const { page = 1, size = 3 } = req.query
+
+      const fichas = await service.findAll(+page, +size)
+
       res.json({ success: true, data: fichas })
     } catch (error) {
       res.status(500).json({ success: false, message: error })
     }
   }
 
-  async getFichaById (req: Request, res: Response) {
+  async getFichaById(req: Request, res: Response) {
     try {
       const id = req.params.id
       const ficha = await service.findOneById(id)
@@ -34,5 +37,4 @@ export class FichaController {
       res.status(500).json({ success: false, message: error })
     }
   }
-
 }
