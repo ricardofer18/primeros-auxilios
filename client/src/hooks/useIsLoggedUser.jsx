@@ -9,12 +9,12 @@ const useIsLoggedUser = () => {
   const [isLogged, setIsLogged] = useState(false)
 
   useEffect(() => {
-    if (userData.accessToken !== undefined) {
+    if (localStorage.accessToken !== undefined) {
       setIsLogged(true)
     } else {
       navigate("/")
     }
-  }, [userData.accessToken, navigate])
+  }, [localStorage.accessToken, navigate])
 
   return isLogged
 }

@@ -1,14 +1,14 @@
 import { Formik, Form, Field } from "formik"
-import loginUser from "../../services/loginService"
 import useUserStore from "../../store/userStore"
 import { useNavigate } from "react-router-dom"
+import loginService from "../../services/loginService"
 
 const LoginForm = () => {
   const saveUserData = useUserStore((state) => state.saveUserData)
   const navigate = useNavigate()
 
   const handleLogin = async (values) => {
-    const login = await loginUser(values)
+    const login = await loginService(values)
     if (login === false) {
       alert("Las credenciales entregadas son incorrectas")
     } else {
