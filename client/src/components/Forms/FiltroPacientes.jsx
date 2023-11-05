@@ -1,6 +1,6 @@
 const FiltroPacientes = () => {
     return (
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
           <label className="fs-5 mb-2">Buscar por Nombre:</label>
           <input type='text' placeholder="Nombre:" className='container rounded-3 border-0 bg-white p-2 mb-5' />
           <label className="fs-5 mb-2">Buscar por Rut:</label>

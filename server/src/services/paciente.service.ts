@@ -1,6 +1,7 @@
 import {
   PacienteType,
   PacienteWithFichasType,
+  PacienteWithPersonaAndPrevisionType,
   PacienteWithPersonaType,
   prisma,
 } from "../types/paciente.types"
@@ -8,7 +9,7 @@ import {
 export class PacienteService {
   constructor() {}
 
-  async findAll(page: number, size: number): Promise<PacienteType[]> {
+  async findAll(page: number, size: number): Promise<PacienteWithPersonaAndPrevisionType[] | null> {
     try {
       const offset = (page - 1) * size
 
