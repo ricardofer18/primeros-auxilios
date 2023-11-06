@@ -35,12 +35,19 @@ body{
 .selected img{
     filter: invert(0);
 }
+.selected:hover{
+    box-shadow: none !important;
+}
 
 nav button{
     transition: 0.2s;
 }
 nav button:hover{
-    color: #909090 !important;
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.3);
+}
+
+.btn-icon:hover{
+    box-shadow: none !important;
 }
 
 .large-text{
@@ -63,6 +70,7 @@ nav button:hover{
     animation: error 5s ease;
     text-align: left !important;
 }
+
 @keyframes error {
     0%{
         margin-top: -200px;
@@ -91,6 +99,11 @@ nav button:hover{
     animation: joinOpts 1s ease;
     filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.3))
 }
+.profile-options button:hover{
+    box-shadow: none;
+    color: #808080 !important;
+}
+
 @keyframes joinOpts {
     0%{
         margin-top: -200px !important;
