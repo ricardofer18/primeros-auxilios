@@ -10,5 +10,6 @@ pacienteRouter
   .post("/", pacienteController.createPaciente)
   .put("/:id", pacienteController.updatePaciente)
   .get("/:id/fichas", pacienteController.getPacienteWithFichas)
+  .get('/rut/:run', pacienteController.getPacienteByRut)
 
 export default pacienteRouter
