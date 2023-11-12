@@ -3,7 +3,8 @@ import { createPaciente } from "../../services/pacienteService"
 import { useEffect, useState } from "react"
 import { fetchPrevisiones } from "../../services/previsionService"
 
-const PacienteForm = () => {
+// eslint-disable-next-line react/prop-types
+const PacienteForm = ({ onCreate }) => {
   const [previsiones, setPrevisiones] = useState([])
 
   useEffect(() => {
@@ -31,9 +32,9 @@ const PacienteForm = () => {
       seguro_MOK: false,
       prevision_id: "",
     },
-    onSubmit: (values) => {
-      console.log("Formulario enviado:", values)
-      createPaciente(values)
+    onSubmit: async (values) => {
+      const paciente = await createPaciente(values)
+      onCreate(paciente.data)
     },
   })
 

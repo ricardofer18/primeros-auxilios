@@ -22,7 +22,7 @@ const PacientePreview = ({ data }) => {
         <p className='col-6 text-start fs-5 display-1 mb-4'>Nro. Fichas: 2</p>
         <p className='col-6 text-end fs-5 display-1'>Fecha: dd/mm/aaaa</p>
         <h1 className='text-start fs-4 display-1 large-text'>
-          Nombre: {data.persona.correo}
+          Nombre: {`${data.persona.nombres} ${data.persona.primer_apellido} ${data.persona.segundo_apellido}`}
         </h1>
         <h1 className='text-start fs-4 display-1 large-text'>
           Rut: {data.persona.run}

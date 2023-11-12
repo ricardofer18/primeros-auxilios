@@ -23,6 +23,28 @@ const fetchPacienteByRut = async (rut) => {
   }
 }
 
+const fetchPacienteById = async (id) => {
+  try {
+    const response = await fetch(API_URL + "/pacientes/" + id, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(
+        `Error al obtener paciente por ID. Estado HTTP: ${response.status}`
+      )
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("Error en la solicitud de paciente por ID:", error)
+    throw error
+  }
+}
+
 const fetchAllPacientes = async () => {
   try {
     const response = await fetch(API_URL + "/pacientes", {
@@ -63,6 +85,7 @@ const createPaciente = async (data) => {
   } = data
 
   try {
+    // Crear persona
     const createPersona = await fetch(API_URL + "/personas", {
       method: "POST",
       headers: {
@@ -130,6 +153,9 @@ const createPaciente = async (data) => {
             `Error al crear paciente. Estado HTTP: ${createPaciente.status}`
           )
         }
+
+        const pacienteData = await createPaciente.json()
+        return pacienteData
       } catch (error) {
         console.error("Error al crear paciente:", error)
         throw error
@@ -144,4 +170,4 @@ const createPaciente = async (data) => {
   }
 }
 
-export { fetchPacienteByRut, fetchAllPacientes, createPaciente, getToken}
+export { fetchPacienteByRut, fetchAllPacientes, createPaciente, getToken, fetchPacienteById }

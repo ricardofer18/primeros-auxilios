@@ -6,7 +6,7 @@ import BtnCrearPaciente from "../BtnCrearPaciente"
 import PacientePreview from "../PacientePreview"
 import PacienteForm from "./PacienteForm"
 
-const BuscadorPaciente = ({ onSuccess }) => {
+const BuscadorPaciente = ({ onSuccess, onCreate }) => {
   const [showCrearForm, setShowCrearForm] = useState(false)
   const [found, setFound] = useState(false)
   const [data, setData] = useState("")
@@ -73,7 +73,7 @@ const BuscadorPaciente = ({ onSuccess }) => {
           )}
         </form>
       ) : (
-        <PacienteForm />
+        <PacienteForm onCreate={onCreate} />
       )}
     </>
   )
