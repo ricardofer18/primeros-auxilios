@@ -1,5 +1,7 @@
-const loginUser = async (credentials) => {
-  const login = await fetch("http://localhost:5000/api/v1/auth/login", {
+import { API_URL } from "./urls"
+
+const loginService = async (credentials) => {
+  const login = await fetch(API_URL+'/auth/login', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,4 +19,4 @@ const loginUser = async (credentials) => {
   return login
 }
 
-export default loginUser
+export default loginService

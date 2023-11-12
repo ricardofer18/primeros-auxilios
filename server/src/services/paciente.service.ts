@@ -1,6 +1,7 @@
 import {
   PacienteType,
   PacienteWithFichasType,
+  PacienteWithPersonaAndPrevisionType,
   PacienteWithPersonaType,
   prisma,
 } from "../types/paciente.types"
@@ -8,7 +9,32 @@ import {
 export class PacienteService {
   constructor() {}
 
-  async findAll(page: number, size: number): Promise<PacienteType[]> {
+  async findOneByRut(
+    run: string
+  ): Promise<PacienteWithPersonaAndPrevisionType | null> {
+    try {
+      const paciente = await prisma.paciente.findFirstOrThrow({
+        where: {
+          persona: {
+            run,
+          },
+        },
+        include: {
+          prevision: true,
+          persona: true,
+        },
+      })
+      return paciente
+    } catch (error) {
+      console.error("Error al buscar paciente por rut", error)
+      throw error
+    }
+  }
+
+  async findAll(
+    page: number,
+    size: number
+  ): Promise<PacienteWithPersonaAndPrevisionType[] | null> {
     try {
       const offset = (page - 1) * size
 

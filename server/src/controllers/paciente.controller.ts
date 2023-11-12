@@ -48,6 +48,16 @@ export class PacienteController {
     }
   }
 
+  getPacienteByRut = async (req: Request, res: Response) => {
+    try {
+      const run = req.params.run
+      const paciente = await pacienteService.findOneByRut(run)
+      res.json({ success: true, data: paciente })
+    } catch (error) {
+      res.status(500).json({ success: false, message: error })
+    }
+  }
+
   getPacienteWithFichas = async (req: Request, res: Response) => {
     try {
       const id = req.params.id
