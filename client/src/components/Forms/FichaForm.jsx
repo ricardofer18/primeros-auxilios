@@ -126,7 +126,7 @@ const FichaForm = ({ pacienteData, onSuccessFicha }) => {
           value={formik.values.procedimiento}
         />
       </div>
-      <button type='submit' className='btn btn-dark mt-5 col-3 mx-auto'>
+      <button type='submit' className='btn btn-danger bg-red mt-5 col-3 mx-auto'>
         Agregar Ficha Paciente
       </button>
     </form>

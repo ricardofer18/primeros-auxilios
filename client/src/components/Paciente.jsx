@@ -21,38 +21,38 @@ const Paciente = () => {
                 <div className='col-9 row mx-auto'>
                     <section className="col-6">
                         <p className='text-start fs-5 display-1'>Nro. Fichas: 1</p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Nombre:
                         </p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Rut:
                         </p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Edad:
                         </p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Fecha Nacimiento: dd/mm/aaaa
                         </p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Prevision:
                         </p>
                     </section>
                     <section className="col-6">
                         <p className='text-end fs-5 display-1'>Id Paciente: 123123123123</p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Jornada:
                         </p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Plan Estudios:
                         </p>
-                        <p className='text-start fs-3 display-1 large-text bg-white rounded p-3'>
+                        <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
                             Semestre:
                         </p>
-                        <p className='text-start fs-3 display-1 bg-white rounded p-3'>
-                            Seguro MOK: <img src="https://img.icons8.com/?size=24&id=83205&format=png" />
+                        <p className='text-start fs-4 display-1 bg-white rounded p-3'>
+                            Seguro MOK: <img src="https://img.icons8.com/?size=20&id=83205&format=png" />
                         </p>
-                        <p className='text-start fs-3 display-1 bg-white rounded p-3'>
-                            UCM: <img src="https://img.icons8.com/?size=24&id=83143&format=png" />
+                        <p className='text-start fs-4 display-1 bg-white rounded p-3'>
+                            UCM: <img src="https://img.icons8.com/?size=20&id=83143&format=png" />
                         </p>
                     </section>
                 </div>

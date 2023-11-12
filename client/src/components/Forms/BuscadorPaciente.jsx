@@ -58,7 +58,7 @@ const BuscadorPaciente = ({ onSuccess, onCreate }) => {
               onChange={formik.handleChange}
               value={formik.values.rut}
             />
-            <button className='btn btn-danger' type='submit'>
+            <button className='btn btn-danger bg-red' type='submit'>
               Buscar Paciente
               <img
                 src='https://img.icons8.com/?size=20&id=83218&format=png'

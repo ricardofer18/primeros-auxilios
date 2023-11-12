@@ -185,7 +185,7 @@ const PacienteForm = ({ onCreate }) => {
           ))}
         </select>
       </div>
-      <button type='submit' className='btn btn-dark mt-5 col-3 mx-auto'>
+      <button type='submit' className='btn btn-danger bg-red mt-5 col-3 mx-auto'>
         Enviar
       </button>
     </form>
