@@ -3,6 +3,7 @@ import { useFormik } from "formik"
 import { createFicha } from "../../services/fichaService"
 
 const FichaForm = ({ pacienteData, onSuccessFicha }) => {
+
   const formik = useFormik({
     initialValues: {
       paciente_id: pacienteData.id,
@@ -21,8 +22,7 @@ const FichaForm = ({ pacienteData, onSuccessFicha }) => {
     },
     onSubmit: async (values) => {
       const ficha = await createFicha(values)
-      console.log(ficha.success)
-      onSuccessFicha(ficha.success)
+      await onSuccessFicha(ficha.success, ficha.data.id)
     },
   })
 
@@ -126,7 +126,10 @@ const FichaForm = ({ pacienteData, onSuccessFicha }) => {
           value={formik.values.procedimiento}
         />
       </div>
-      <button type='submit' className='btn btn-danger bg-red mt-5 col-3 mx-auto'>
+      <button
+        type='submit'
+        className='btn btn-danger bg-red mt-5 col-3 mx-auto'
+      >
         Agregar Ficha Paciente
       </button>
     </form>

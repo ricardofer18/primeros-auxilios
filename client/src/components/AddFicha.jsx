@@ -5,10 +5,14 @@ import { fetchPacienteById } from "../services/pacienteService"
 import PacientePreview from "./PacientePreview"
 import useFichas from "../hooks/useFichas"
 import usePacientes from "../hooks/usePacientes"
+import { useNavigate } from "react-router-dom"
 
 const AddFicha = () => {
   const [paciente, setPaciente] = useState(null)
   const [success, setSuccess] = useState("none")
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   const handleSuccessSearch = (data) => {
     handleSuccess(data, "search")
@@ -26,12 +30,13 @@ const AddFicha = () => {
     }, 1000)
   }
 
-  const handleSuccessFicha = (success) => {
+  const handleSuccessFicha = (success, id) => {
     setTimeout(() => {
       if (success === true) {
         alert("FICHA CREADA EXITOSAMENTE!!!!!")
-      } else {
-        alert("puuta la wea")
+        navigate(`/home/fichas/`)
+      } else if (success === false) {
+        alert("ERROR INESPERADO")
       }
     }, 1000)
   }
