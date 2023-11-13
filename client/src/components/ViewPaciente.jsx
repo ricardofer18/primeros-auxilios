@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import FichaPreview from "./FichaPreview"
 import Paciente from "./Paciente"
 import { fetchPacientesWithFichasById } from "../services/pacienteService"
+import { useFichas } from "../hooks/useFichas"
+import { usePacientes} from "../hooks/usePacientes"
 
 const ViewPaciente = ({ data }) => {
   const [fichas, setFichas] = useState([])
@@ -16,7 +18,8 @@ const ViewPaciente = ({ data }) => {
     fetchData()
   }, [])
 
-  console.log(fichas)
+  useFichas(setError, setLoading)
+  usePacientes(setError, setLoading)
 
   return (
     <div>

@@ -3,6 +3,8 @@ import BuscadorPaciente from "./Forms/BuscadorPaciente"
 import FichaForm from "./Forms/FichaForm"
 import { fetchPacienteById } from "../services/pacienteService"
 import PacientePreview from "./PacientePreview"
+import { useFichas } from "../hooks/useFichas"
+import { usePacientes } from "../hooks/usePacientes"
 
 const AddFicha = () => {
   const [paciente, setPaciente] = useState(null)
@@ -33,6 +35,9 @@ const AddFicha = () => {
       }
     }, 1000)
   }
+
+  useFichas(setError, setLoading)
+  usePacientes(setError, setLoading)
 
   return (
     <div className='col-10 mx-auto row text-center p-4 text-center'>

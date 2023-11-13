@@ -35,6 +35,7 @@ const PacienteForm = ({ onCreate }) => {
     onSubmit: async (values) => {
       const paciente = await createPaciente(values)
       onCreate(paciente.data)
+      console.log(values)
     },
   })
 
