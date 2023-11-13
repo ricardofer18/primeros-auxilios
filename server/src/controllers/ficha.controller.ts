@@ -16,11 +16,11 @@ export class FichaController {
     }
   }
 
-  async getAllFichas(req: Request, res: Response) {
+  async getAllFichas(_req: Request, res: Response) {
     try {
-      const { page = 1, size = 3 } = req.query
+      //const { page = 1, size = 3 } = req.query
 
-      const fichas = await service.findAll(+page, +size)
+      const fichas = await service.findAll(/*+page, +size*/)
 
       res.json({ success: true, data: fichas })
     } catch (error) {

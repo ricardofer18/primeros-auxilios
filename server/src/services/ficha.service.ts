@@ -1,15 +1,33 @@
-import { FichaType, prisma } from "../types/ficha.types"
+import {
+  FichaType,
+  prisma,
+  FichaWithPersonaAndPersonal,
+} from "../types/ficha.types"
 
 export class FichaService {
   constructor() {}
 
-  async findAll(page: number, size: number): Promise<FichaType[]> {
+  async findAll(/*page: number, size: number*/): Promise<
+    FichaWithPersonaAndPersonal[]
+  > {
     try {
-      const offset = (page - 1) * size
+      //const offset = (page - 1) * size
 
       const fichas = prisma.ficha.findMany({
-        skip: offset,
-        take: size,
+        //skip: offset,
+        //take: size,
+        include: {
+          personal: {
+            include: {
+              persona: true,
+            },
+          },
+          paciente: {
+            include: {
+              persona: true,
+            },
+          },
+        },
       })
       return fichas
     } catch (error) {

@@ -1,18 +1,36 @@
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react"
 import FichaPreview from "./FichaPreview"
 import Paciente from "./Paciente"
+import { fetchPacientesWithFichasById } from "../services/pacienteService"
 
-const ViewPaciente = () => {
-    return (
-        <div>
-            <Paciente></Paciente>
-            <div className='row mx-auto p-5 pt-0 mt-0'>
-                <div className="row mx-auto col-12 bg-secondary-subtle rounded-bottom border-top border-dark p-5">
-                    <h1 className="display-1 fs-1 text-center">Fichas Paciente</h1>
-                    <FichaPreview></FichaPreview>
-                </div>
-            </div>
+const ViewPaciente = ({ data }) => {
+  const [fichas, setFichas] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetchPacientesWithFichasById(data.id)
+      setFichas(response.data.ficha)
+    }
+
+    fetchData()
+  }, [])
+
+  console.log(fichas)
+
+  return (
+    <div>
+      <Paciente data={data}></Paciente>
+      <div className='row mx-auto p-5 pt-0 mt-0'>
+        <div className='row mx-auto col-12 bg-secondary-subtle rounded-bottom border-top border-dark p-5'>
+          <h1 className='display-1 fs-1 text-center'>Fichas Paciente</h1>
         </div>
-    )
+      </div>
+      {fichas.map((ficha) => (
+        <FichaPreview key={ficha.id} data={ficha} />
+      ))}
+    </div>
+  )
 }
 
 export default ViewPaciente

@@ -9,53 +9,50 @@ const AddFicha = () => {
   const [success, setSuccess] = useState("none")
 
   const handleSuccessSearch = (data) => {
-    setTimeout(() => {
-      setPaciente(data)
-      setSuccess('search')
-    }, 1000)
+    handleSuccess(data, "search")
   }
 
-  const handleSuccessCreate = (data) => {
-    setTimeout(async () => {
-      const pacienteData = await fetchPacienteById(data.id)
-      setPaciente(pacienteData.data)
-      setSuccess('create')
+  const handleSuccessCreate = async (data) => {
+    const pacienteData = await fetchPacienteById(data.id)
+    handleSuccess(pacienteData.data, "create")
+  }
+
+  const handleSuccess = (data, successType) => {
+    setTimeout(() => {
+      setPaciente(data)
+      setSuccess(successType)
     }, 1000)
   }
 
   const handleSuccessFicha = (success) => {
-    setTimeout(async () => {
+    setTimeout(() => {
       if (success === true) {
-        alert('FICHA CREADA EXITOSAMENTE!!!!!')
-      }else {
-        alert('puuta la wea')
+        alert("FICHA CREADA EXITOSAMENTE!!!!!")
+      } else {
+        alert("puuta la wea")
       }
     }, 1000)
   }
 
-  switch(success) {
-    case 'none': return (
-      <div className='col-10 mx-auto row text-center p-4 text-center'>
+  return (
+    <div className='col-10 mx-auto row text-center p-4 text-center'>
+      {success === "none" && (
         <BuscadorPaciente
           onSuccess={handleSuccessSearch}
           onCreate={handleSuccessCreate}
         />
+      )}
+      {(success === "search" || success === "create") && (
+        <>
+          <PacientePreview data={paciente} />
+          <FichaForm
+            pacienteData={paciente}
+            onSuccessFicha={handleSuccessFicha}
+          />
+        </>
+      )}
     </div>
-    )
-    case 'search': return (
-      <div className='col-10 mx-auto row text-center p-4 text-center'>
-        <PacientePreview data={paciente}></PacientePreview>
-        <FichaForm pacienteData={paciente} onSuccessFicha={handleSuccessFicha}></FichaForm>
-      </div>
-    )
-    case 'create': return (
-      <div className='col-10 mx-auto row text-center p-4 text-center'>
-        <PacientePreview data={paciente}></PacientePreview>
-        <FichaForm pacienteData={paciente} onSuccessFicha={handleSuccessFicha}></FichaForm>
-      </div>
-    )
-  }
-
+  )
 }
 
 export default AddFicha

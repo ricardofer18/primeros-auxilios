@@ -31,17 +31,16 @@ export class PacienteService {
     }
   }
 
-  async findAll(
-    page: number,
-    size: number
-  ): Promise<PacienteWithPersonaAndPrevisionType[] | null> {
+  async findAll(): //page: number,
+  //size: number
+  Promise<PacienteWithPersonaAndPrevisionType[] | null> {
     try {
-      const offset = (page - 1) * size
+      //const offset = (page - 1) * size
 
       const pacientes = await prisma.paciente.findMany({
         include: { prevision: true, persona: true },
-        skip: offset,
-        take: size,
+        //skip: offset,
+        // take: size,
       })
       return pacientes
     } catch (error) {
@@ -74,7 +73,20 @@ export class PacienteService {
           id,
         },
         include: {
-          ficha: true,
+          ficha: {
+            include: {
+              paciente: {
+                include: {
+                  persona: true,
+                },
+              },
+              personal: {
+                include: {
+                  persona: true,
+                },
+              },
+            },
+          },
           persona: true,
         },
       })

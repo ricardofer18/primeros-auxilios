@@ -67,6 +67,28 @@ const fetchAllPacientes = async () => {
   }
 }
 
+const fetchPacientesWithFichasById = async (id) => {
+  try {
+    const response = await fetch(API_URL + `/pacientes/${id}/fichas`, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(
+        `Error al obtener pacientes. Estado HTTP: ${response.status}`
+      )
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("Error en la solicitud de todos los pacientes:", error)
+    throw error
+  }
+}
+
 const createPaciente = async (data) => {
   const {
     nombres,
@@ -170,4 +192,11 @@ const createPaciente = async (data) => {
   }
 }
 
-export { fetchPacienteByRut, fetchAllPacientes, createPaciente, getToken, fetchPacienteById }
+export {
+  fetchPacienteByRut,
+  fetchAllPacientes,
+  createPaciente,
+  getToken,
+  fetchPacienteById,
+  fetchPacientesWithFichasById,
+}
