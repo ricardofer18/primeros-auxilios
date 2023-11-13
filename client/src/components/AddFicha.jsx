@@ -3,8 +3,8 @@ import BuscadorPaciente from "./Forms/BuscadorPaciente"
 import FichaForm from "./Forms/FichaForm"
 import { fetchPacienteById } from "../services/pacienteService"
 import PacientePreview from "./PacientePreview"
-import { useFichas } from "../hooks/useFichas"
-import { usePacientes } from "../hooks/usePacientes"
+import useFichas from "../hooks/useFichas"
+import usePacientes from "../hooks/usePacientes"
 
 const AddFicha = () => {
   const [paciente, setPaciente] = useState(null)

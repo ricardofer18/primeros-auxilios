@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 import FichaPreview from "./FichaPreview"
 import Paciente from "./Paciente"
 import { fetchPacientesWithFichasById } from "../services/pacienteService"
-import { useFichas } from "../hooks/useFichas"
-import { usePacientes} from "../hooks/usePacientes"
+import useFichas from "../hooks/useFichas"
+import usePacientes from "../hooks/usePacientes"
 
 const ViewPaciente = ({ data }) => {
   const [fichas, setFichas] = useState([])

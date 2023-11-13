@@ -16,7 +16,7 @@ const usePacientes = (setError, setLoading) => {
     }
 
     fetchData()
-  }, [])
+  }, [fetchPacientes, setError, setLoading])
 }
 
 export default usePacientes

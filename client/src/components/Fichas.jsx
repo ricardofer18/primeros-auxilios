@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import useFichas from "../hooks/useFichas"
 import useFichaStore from "../store/fichaStore"
 import { useState } from "react"
-import { usePacientes } from "../hooks/usePacientes"
+import usePacientes from "../hooks/usePacientes"
 
 const Fichas = () => {
   const fichas = useFichaStore((state) => state.fichas)
