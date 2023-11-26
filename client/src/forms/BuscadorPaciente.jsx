@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react"
 import { useFormik } from "formik"
-import { fetchPacienteByRut } from "../../services/pacienteService"
-import BtnCrearPaciente from "../BtnCrearPaciente"
-import PacientePreview from "../PacientePreview"
+import { fetchPacienteByRut } from "../services/pacienteService"
+import BtnCrearPaciente from "../components/BtnCrearPaciente"
+import PacientePreview from "../components/PacientePreview"
 import PacienteForm from "./PacienteForm"
 
 const BuscadorPaciente = ({ onSuccess, onCreate }) => {

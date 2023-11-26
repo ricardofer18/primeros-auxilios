@@ -1,7 +1,7 @@
 import { useFormik } from "formik"
-import { createPaciente } from "../../services/pacienteService"
+import { createPaciente } from "../services/pacienteService"
 import { useEffect, useState } from "react"
-import { fetchPrevisiones } from "../../services/previsionService"
+import { fetchPrevisiones } from "../services/previsionService"
 
 // eslint-disable-next-line react/prop-types
 const PacienteForm = ({ onCreate }) => {

@@ -1,6 +1,6 @@
 import logo from "../assets/inacap.svg"
 import Container from "./container"
-import LoginForm from "./Forms/LoginForm"
+import LoginForm from "../forms/LoginForm"
 
 const Login = () => {
   return (

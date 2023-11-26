@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useFormik } from "formik"
-import { createFicha } from "../../services/fichaService"
+import { createFicha } from "../services/fichaService"
 
 const FichaForm = ({ pacienteData, onSuccessFicha }) => {
 

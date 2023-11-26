@@ -15,7 +15,7 @@ body{
     background-color: rgba(226,31,24,255);
 }
 .h-full{
-    height: 100%;
+    height: 100% !important;
 }
 .vertical-align{
     display: flex;
@@ -52,7 +52,7 @@ nav button:hover{
 
 .large-text{
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Muestra solo 2 líneas */
+    -webkit-line-clamp: 1; /* Muestra solo 2 líneas */
     -webkit-box-orient: vertical;
     white-space: normal; /* Permite el recorte de texto */
     text-overflow: ellipsis; /* Aplica el efecto de recorte */
