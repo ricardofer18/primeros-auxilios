@@ -42,14 +42,11 @@ const ViewPaciente = ({ data }) => {
         </div>
       </section>
       <section className="col-5 p-4">
-        <div className='row mx-auto bg-secondary-subtle rounded p-5 overflow-hidden'>
+        <div className='row mx-auto bg-secondary-subtle rounded p-5 overflow-auto' style={{height: '80%'}}>
           <h1 className='display-1 fs-1 text-center'>Fichas Paciente</h1>
           {fichas.map((ficha) => (
             <FichaPreview key={ficha.id} data={ficha} />
           ))}
-          <button className="col-11 btn btn-danger bg-red fs-4 p-2 mt-4 mx-auto">
-            Ver mas fichas
-          </button>
         </div>
       </section>
     </div>

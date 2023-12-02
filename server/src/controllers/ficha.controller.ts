@@ -20,7 +20,9 @@ export class FichaController {
     try {
       //const { page = 1, size = 3 } = req.query
 
-      const fichas = await service.findAll(/*+page, +size*/)
+      //const fichas = await service.findAll(/*+page, +size*/)
+
+      const fichas = await service.findAll()
 
       res.json({ success: true, data: fichas })
     } catch (error) {

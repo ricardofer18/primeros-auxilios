@@ -34,7 +34,7 @@ const AddFicha = () => {
     setTimeout(() => {
       if (success === true) {
         alert("FICHA CREADA EXITOSAMENTE!!!!!")
-        navigate(`/home/fichas/`)
+        navigate(`/home/fichas`)
       } else if (success === false) {
         alert("ERROR INESPERADO")
       }

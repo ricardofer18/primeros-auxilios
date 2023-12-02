@@ -7,10 +7,11 @@ import { useState } from "react"
 import usePacientes from "../hooks/usePacientes"
 
 const Fichas = () => {
-  const fichas = useFichaStore((state) => state.fichas)
+  const fichasData = useFichaStore((state) => state.fichas)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const location = useLocation()
+  const fichas = fichasData.reverse()
 
   useFichas(setError, setLoading)
   usePacientes(setError, setLoading)

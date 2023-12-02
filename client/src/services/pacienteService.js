@@ -1,6 +1,50 @@
 import { API_URL } from "./urls"
 import { getToken } from "../utils/getToken"
 
+const fetchAllJornadas = async () => {
+  try {
+    const response = await fetch(API_URL + "/jornadas", {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(
+        `Error al obtener jornadas. Estado HTTP: ${response.status}`
+      )
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("Error en la solicitud de jornadas: ", error)
+    throw error
+  }
+}
+
+const fetchAllPlanes = async () => {
+  try {
+    const response = await fetch(API_URL + "/planes", {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(
+        `Error al obtener planes. Estado HTTP: ${response.status}`
+      )
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("Error en la solicitud de planes: ", error)
+    throw error
+  }
+}
+
 const fetchPacienteByRut = async (rut) => {
   try {
     const response = await fetch(API_URL + "/pacientes/rut/" + rut, {
@@ -18,7 +62,7 @@ const fetchPacienteByRut = async (rut) => {
     const data = await response.json()
     return data
   } catch (error) {
-    console.error("Error en la solicitud de paciente por Rut:", error)
+    console.error("Error en la solicitud de paciente por Rut: ", error)
     throw error
   }
 }
@@ -90,6 +134,31 @@ const fetchPacientesWithFichasById = async (id) => {
 }
 
 const createPaciente = async (data) => {
+  try {
+    const response = await fetch(API_URL + "/pacientes", {
+      headers: {
+        Authorization: getToken(),
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      throw new Error(
+        `Error al crear paciente. Estado HTTP: ${response.status}`
+      )
+    }
+
+    const dataPaciente = await response.json()
+    return dataPaciente
+  } catch (error) {
+    console.error("Error en la solicitud de crear paciente:", error)
+    throw error
+  }
+}
+
+/*const createPaciente = async (data) => {
   const {
     nombres,
     run,
@@ -190,7 +259,7 @@ const createPaciente = async (data) => {
     console.error("Error al crear paciente:", error)
     throw error
   }
-}
+}*/
 
 export {
   fetchPacienteByRut,
@@ -199,4 +268,6 @@ export {
   getToken,
   fetchPacienteById,
   fetchPacientesWithFichasById,
+  fetchAllJornadas,
+  fetchAllPlanes
 }

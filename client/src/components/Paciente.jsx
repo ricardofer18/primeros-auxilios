@@ -24,13 +24,12 @@ const Paciente = ({ data }) => {
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
               Fecha Nacimiento: {data.fecha_nacimiento}
             </p>
-            <p className='text-start fs-4 display-1 large-text bg-white rounded p-3 text-danger'>
+            <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
             Prevision: {data.prevision.nombre}
-            <img className="float-end" src='https://img.icons8.com/?size=25&id=85502&format=png' />
             </p>
           </section>
           <section className='col-6'>
-            <p className='text-end fs-5 display-1'>Ultima modificacion: dd/mm/aaaa</p>
+            <p className='text-end fs-5 display-1'> a </p>
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
               Jornada: {data.jornada}
             </p>
@@ -50,7 +49,6 @@ const Paciente = ({ data }) => {
             </p>
           </section>
           <section className="col-12 text-center">
-            <p className="display-1 fs-5 pt-2">Modificado ultima vez por: {"Autor"}</p>
           </section>
         </div>
       </div>

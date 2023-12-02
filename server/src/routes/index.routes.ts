@@ -6,6 +6,8 @@ import fichaRouter from "./ficha.routes"
 import authenticateToken from "../middlewares/auth.middleware"
 import fonoRouter from "./fono.routes"
 import previsionRouter from "./prevision.routes"
+import jornadaRouter from "./jornada.routes"
+import planRouter from "./plan_estudio.routes"
 
 const routerApi = (app: Application) => {
   const router = Router()
@@ -18,6 +20,8 @@ const routerApi = (app: Application) => {
   router.use("/fichas", authenticateToken, fichaRouter)
   router.use("/fonos", authenticateToken, fonoRouter)
   router.use("/previsiones", authenticateToken, previsionRouter)
+  router.use("/jornadas", authenticateToken, jornadaRouter)
+  router.use('/planes', authenticateToken, planRouter)
 
   return router
 }

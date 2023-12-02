@@ -1,16 +1,27 @@
+/* eslint-disable no-unused-vars */
 import { useFormik } from "formik"
-import { createPaciente } from "../services/pacienteService"
+import {
+  createPaciente,
+  fetchAllJornadas,
+  fetchAllPlanes,
+} from "../services/pacienteService"
 import { useEffect, useState } from "react"
 import { fetchPrevisiones } from "../services/previsionService"
 
 // eslint-disable-next-line react/prop-types
 const PacienteForm = ({ onCreate }) => {
   const [previsiones, setPrevisiones] = useState([])
+  const [planes, setPlanes] = useState([])
+  const [jornadas, setJornada] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchPrevisiones()
-      setPrevisiones(data.data)
+      const dataPrevisiones = await fetchPrevisiones()
+      const dataPlanes = await fetchAllPlanes()
+      const dataJornada = await fetchAllJornadas()
+      setPrevisiones(dataPrevisiones.data)
+      setJornada(dataJornada.data)
+      setPlanes(dataPlanes.data)
     }
 
     fetchData()
@@ -25,8 +36,8 @@ const PacienteForm = ({ onCreate }) => {
       correo: "",
       numero: "",
       fecha_nacimiento: "",
-      jornada: "",
-      plan_estudios: "",
+      jornada_id: "",
+      plan_estudios_id: "",
       semestre: "",
       ucm: false,
       seguro_MOK: false,
@@ -118,24 +129,38 @@ const PacienteForm = ({ onCreate }) => {
             />
           </div>
         </div>
-        <input
-          type='text'
+        <select
           className='col-12 rounded-3 border-0 bg-white p-2 mb-4'
-          placeholder='Jornada'
-          id='jornada'
-          name='jornada'
+          id='jornada_id'
+          name='jornada_id'
           onChange={formik.handleChange}
-          value={formik.values.jornada}
-        />
-        <input
-          type='text'
+          value={formik.values.jornada_id}
+        >
+          <option value='' disabled>
+            Jornada
+          </option>
+          {jornadas.map((jornada) => (
+            <option key={jornada.id} value={jornada.id}>
+              {jornada.nombre}
+            </option>
+          ))}
+        </select>
+        <select
           className='col-12 rounded-3 border-0 bg-white p-2 mb-4'
-          placeholder='Plan de Estudios'
-          id='plan_estudios'
-          name='plan_estudios'
+          id='plan_estudios_id'
+          name='plan_estudios_id'
           onChange={formik.handleChange}
-          value={formik.values.plan_estudios}
-        />
+          value={formik.values.plan_estudios_id}
+        >
+          <option value='' disabled>
+            Plan de Estudios
+          </option>
+          {planes.map((plan) => (
+            <option key={plan.id} value={plan.id}>
+              {plan.nombre}
+            </option>
+          ))}
+        </select>
         <input
           type='text'
           className='col-12 rounded-3 border-0 bg-white p-2 mb-4'
@@ -186,7 +211,10 @@ const PacienteForm = ({ onCreate }) => {
           ))}
         </select>
       </div>
-      <button type='submit' className='btn btn-danger bg-red mt-5 col-3 mx-auto'>
+      <button
+        type='submit'
+        className='btn btn-danger bg-red mt-5 col-3 mx-auto'
+      >
         Enviar
       </button>
     </form>

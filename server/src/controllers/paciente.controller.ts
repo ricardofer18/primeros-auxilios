@@ -26,8 +26,8 @@ interface FonoData {
 interface PacienteData {
   id: string
   fecha_nacimiento: string
-  jornada: string
-  plan_estudios: string
+  jornada_id: string
+  plan_estudios_id: string
   semestre: string
   ucm: boolean
   seguro_MOK: boolean
@@ -48,8 +48,8 @@ export class PacienteController {
         correo,
         numero,
         fecha_nacimiento,
-        jornada,
-        plan_estudios,
+        jornada_id,
+        plan_estudios_id,
         semestre,
         ucm,
         seguro_MOK,
@@ -87,13 +87,13 @@ export class PacienteController {
         persona_id: newPersona.id,
       }
 
-      const newFono = await fonoService.createFono(fonoData)
+      await fonoService.createFono(fonoData)
 
       const pacienteData: PacienteData = {
         id: uuid4(),
         fecha_nacimiento,
-        jornada,
-        plan_estudios,
+        jornada_id,
+        plan_estudios_id,
         semestre,
         ucm,
         seguro_MOK,
