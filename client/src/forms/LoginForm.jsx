@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from "formik"
-import useUserStore from "../../store/userStore"
+import useUserStore from "../store/userStore"
 import { useNavigate } from "react-router-dom"
-import loginService from "../../services/loginService"
+import loginService from "../services/loginService"
 
 const LoginForm = () => {
   const saveUserData = useUserStore((state) => state.saveUserData)

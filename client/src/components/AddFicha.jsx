@@ -1,6 +1,6 @@
 import { useState } from "react"
-import BuscadorPaciente from "./Forms/BuscadorPaciente"
-import FichaForm from "./Forms/FichaForm"
+import BuscadorPaciente from "../forms/BuscadorPaciente"
+import FichaForm from "../forms/FichaForm"
 import { fetchPacienteById } from "../services/pacienteService"
 import PacientePreview from "./PacientePreview"
 import useFichas from "../hooks/useFichas"

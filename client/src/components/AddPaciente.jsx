@@ -1,4 +1,4 @@
-import PacienteForm from "./Forms/PacienteForm";
+import PacienteForm from "../forms/PacienteForm"
 
 const AddPaciente = () => {
     return (

@@ -5,6 +5,7 @@ import Paciente from "./Paciente"
 import { fetchPacientesWithFichasById } from "../services/pacienteService"
 import useFichas from "../hooks/useFichas"
 import usePacientes from "../hooks/usePacientes"
+import DocumentoPreview from "./DocumentoPreview"
 
 const ViewPaciente = ({ data }) => {
   const [fichas, setFichas] = useState([])
@@ -24,16 +25,33 @@ const ViewPaciente = ({ data }) => {
   usePacientes(setError, setLoading)
 
   return (
-    <div>
-      <Paciente data={data}></Paciente>
-      <div className='row mx-auto p-5 pt-0 mt-0'>
-        <div className='row mx-auto col-12 bg-secondary-subtle rounded-bottom border-top border-dark p-5'>
+    <div className="row col-10 mx-auto h-full">
+      <section className="col-7 p-4 h-full">
+        <Paciente data={data}></Paciente>
+        <div id="documentos" className='row mx-auto bg-secondary-subtle rounded p-5 mt-5 h-full'>
+          <h1 className="display-1 fs-1 text-center col-12">Documentos</h1>
+          <div className="row-cols-5 text-center h-full">
+            <DocumentoPreview />
+            <DocumentoPreview />
+            <DocumentoPreview />
+            <DocumentoPreview />
+          </div>
+          <button className="col-6 btn btn-danger bg-red fs-4 p-2 mt-4 mx-auto">
+            Adjuntar nuevo documento
+          </button>
+        </div>
+      </section>
+      <section className="col-5 p-4">
+        <div className='row mx-auto bg-secondary-subtle rounded p-5 overflow-hidden'>
           <h1 className='display-1 fs-1 text-center'>Fichas Paciente</h1>
           {fichas.map((ficha) => (
             <FichaPreview key={ficha.id} data={ficha} />
           ))}
+          <button className="col-11 btn btn-danger bg-red fs-4 p-2 mt-4 mx-auto">
+            Ver mas fichas
+          </button>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

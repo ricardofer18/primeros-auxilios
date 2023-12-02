@@ -1,5 +1,5 @@
 import { useState } from "react"
-import FiltroPacientes from "./Forms/FiltroPacientes"
+import FiltroPacientes from "../forms/FiltroPacientes"
 import PacientePreview from "./PacientePreview"
 import usePacienteStore from "../store/pacienteStore"
 import { useLocation } from "react-router-dom"

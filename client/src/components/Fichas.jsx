@@ -1,5 +1,5 @@
 import FichaPreview from "./FichaPreview"
-import FiltroFicha from "./Forms/FiltroFichas"
+import FiltroFicha from "../forms/FiltroFichas"
 import { useLocation } from "react-router-dom"
 import useFichas from "../hooks/useFichas"
 import useFichaStore from "../store/fichaStore"
