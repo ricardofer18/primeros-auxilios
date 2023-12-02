@@ -1,18 +1,114 @@
 import { Request, Response } from "express"
 import { PacienteService } from "../services/paciente.service"
+import { PersonaService } from "../services/persona.service"
+import { FonoService } from "../services/fono.service"
+import uuid4 from "uuid4"
 
 const pacienteService = new PacienteService()
+const personaService = new PersonaService()
+const fonoService = new FonoService()
+
+interface PersonaData {
+  id: string
+  nombres: string
+  run: string
+  primer_apellido: string
+  segundo_apellido: string
+  correo: string
+}
+
+interface FonoData {
+  id: string
+  numero: string
+  persona_id: string
+}
+
+interface PacienteData {
+  id: string
+  fecha_nacimiento: string
+  jornada: string
+  plan_estudios: string
+  semestre: string
+  ucm: boolean
+  seguro_MOK: boolean
+  prevision_id: string
+  persona_id: string
+}
 
 export class PacienteController {
   constructor() {}
 
-  createPaciente = async (req: Request, res: Response) => {
+  async createPaciente(req: Request, res: Response) {
     try {
-      const pacienteData = req.body
+      const {
+        nombres,
+        run,
+        primer_apellido,
+        segundo_apellido,
+        correo,
+        numero,
+        fecha_nacimiento,
+        jornada,
+        plan_estudios,
+        semestre,
+        ucm,
+        seguro_MOK,
+        prevision_id,
+      } = req.body
+
+      const personaData: PersonaData = {
+        id: uuid4(),
+        nombres,
+        run,
+        primer_apellido,
+        segundo_apellido,
+        correo,
+      }
+
+      const newPersona = (await personaService.create(personaData)) as {
+        id: string
+        nombres: string
+        primer_apellido: string
+        segundo_apellido: string
+        correo: string
+        run: string
+      } | null
+
+      if (!newPersona) {
+        res
+          .status(500)
+          .json({ success: false, message: "Error al crear persona" })
+        return
+      }
+
+      const fonoData: FonoData = {
+        id: uuid4(),
+        numero,
+        persona_id: newPersona.id,
+      }
+
+      const newFono = await fonoService.createFono(fonoData)
+
+      const pacienteData: PacienteData = {
+        id: uuid4(),
+        fecha_nacimiento,
+        jornada,
+        plan_estudios,
+        semestre,
+        ucm,
+        seguro_MOK,
+        prevision_id,
+        persona_id: newPersona.id,
+      }
+
       const newPaciente = await pacienteService.create(pacienteData)
+
       res.json({ success: true, data: newPaciente })
     } catch (error) {
-      res.status(500).json({ success: false, message: error })
+      console.error(error)
+      res
+        .status(500)
+        .json({ success: false, message: "Error interno del servidor" })
     }
   }
 
