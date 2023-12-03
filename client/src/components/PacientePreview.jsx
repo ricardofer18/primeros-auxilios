@@ -5,8 +5,9 @@ import { calcularEdad }from '../utils/edad'
 
 const PacientePreview = ({ data }) => {
   const navigate = useNavigate()
-
+  const fecha = new Date(data.fecha_nacimiento)
   const edad = calcularEdad(data)
+  console.log(data)
 
   return (
     <button
@@ -21,8 +22,8 @@ const PacientePreview = ({ data }) => {
         />
       </div>
       <div className='col-8 row mx-auto'>
-        <p className='col-6 text-start fs-5 display-1 mb-4'>Nro. Fichas: 2</p>
-        <p className='col-6 text-end fs-5 display-1'>Fecha: dd/mm/aaaa</p>
+        <p className='col-6 text-start fs-5 display-1 mb-4'>Nro. Fichas: {data.ficha.length}</p>
+        <p className='col-6 text-end fs-5 display-1'>Fecha de nacimiento: {fecha.toLocaleDateString()}</p>
         <h1 className='text-start fs-4 display-1 large-text'>
           Nombre:{" "}
           {`${data.persona.nombres} ${data.persona.primer_apellido} ${data.persona.segundo_apellido}`}

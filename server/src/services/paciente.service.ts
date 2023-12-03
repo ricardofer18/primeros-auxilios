@@ -22,6 +22,8 @@ export class PacienteService {
         include: {
           prevision: true,
           persona: true,
+          jornada: true,
+          plan_estudios: true,
         },
       })
       return paciente
@@ -38,7 +40,13 @@ export class PacienteService {
       //const offset = (page - 1) * size
 
       const pacientes = await prisma.paciente.findMany({
-        include: { prevision: true, persona: true },
+        include: {
+          prevision: true,
+          persona: true,
+          jornada: true,
+          plan_estudios: true,
+          ficha: true
+        },
         //skip: offset,
         // take: size,
       })

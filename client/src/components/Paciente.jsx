@@ -3,6 +3,7 @@ import { calcularEdad } from "../utils/edad"
 
 const Paciente = ({ data }) => {
   const edad = calcularEdad(data)
+  const fecha = new Date(data.fecha_nacimiento)
 
   return (
     <div className='row mx-auto'>
@@ -22,34 +23,41 @@ const Paciente = ({ data }) => {
               Edad: {edad}
             </p>
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
-              Fecha Nacimiento: {data.fecha_nacimiento}
+              Fecha Nacimiento: {fecha.toLocaleDateString()}
             </p>
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
-            Prevision: {data.prevision.nombre}
+              Prevision: {data.prevision.nombre}
             </p>
           </section>
           <section className='col-6'>
             <p className='text-end fs-5 display-1'> a </p>
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
-              Jornada: {data.jornada}
+              Jornada: {data.jornada.nombre}
             </p>
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3 large-text'>
-              Plan Estudios: {data.plan_estudios}
+              Plan Estudios: {data.plan_estudios.nombre}
             </p>
             <p className='text-start fs-4 display-1 large-text bg-white rounded p-3'>
               Semestre: {data.semestre}
             </p>
             <p className='text-start fs-4 display-1 bg-white rounded p-3'>
-              Seguro MOK: {" "}
-              <img src='https://img.icons8.com/?size=20&id=83205&format=png' />
+              Seguro MOK:{" "}
+              {data.seguro_MOK === true ? (
+                <img src='https://img.icons8.com/?size=20&id=83205&format=png' />
+              ) : (
+                <img src='https://img.icons8.com/?size=20&id=83143&format=png' />
+              )}
             </p>
             <p className='text-start fs-4 display-1 bg-white rounded p-3'>
-              UCM: {" "}
-              <img src='https://img.icons8.com/?size=20&id=83143&format=png' />
+              UCM:{" "}
+              {data.ucm === true ? (
+                <img src='https://img.icons8.com/?size=20&id=83205&format=png' />
+              ) : (
+                <img src='https://img.icons8.com/?size=20&id=83143&format=png' />
+              )}
             </p>
           </section>
-          <section className="col-12 text-center">
-          </section>
+          <section className='col-12 text-center'></section>
         </div>
       </div>
     </div>

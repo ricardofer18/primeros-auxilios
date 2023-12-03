@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 const Ficha = ({ data }) => {
+
   return (
     <div className='row mx-auto p-5 pt-0 mt-0'>
       <div className='row mx-auto col-12 bg-secondary-subtle rounded-bottom'>

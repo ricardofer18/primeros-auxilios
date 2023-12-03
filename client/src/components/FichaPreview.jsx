@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 const FichaPreview = ({ data }) => {
   const navigate = useNavigate()
+  const fecha = new Date(data.fecha)
 
   return (
     <button
@@ -18,7 +19,7 @@ const FichaPreview = ({ data }) => {
         <h2 className='fs-4 display-1'>{data.paciente.persona.nombres}</h2>
       </div>
       <div className='col-8'>
-        <p className='col-12 text-end fs-5 display-1'>Fecha: {data.fecha}</p>
+        <p className='col-12 text-end fs-5 display-1'>Fecha: {fecha.toLocaleDateString()}</p>
         <h1 className='text-start fs-2 display-1 mb-4 large-text'>
           Motivo: {data.motivo_consulta}
         </h1>
