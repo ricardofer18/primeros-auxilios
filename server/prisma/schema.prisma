@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -93,9 +93,10 @@ model Paciente {
 
 model Documento {
   id          String   @id @unique @default(uuid())
-  tipo        String
+  extension   String
   url         String
   paciente_id String
+  fecha       DateTime
   paciente    Paciente @relation(fields: [paciente_id], references: [id])
 }
 
